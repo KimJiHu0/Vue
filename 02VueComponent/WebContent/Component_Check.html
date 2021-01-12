@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>컴포넌트의 유효범위 확인하기</h1>
+	<div id="app">
+		<!-- 전역 컴포넌트 태그 -->
+		<my-global-component></my-global-component>
+		<!-- 지역 컴포넌트 태그 -->
+		<my-local-component></my-local-component>
+	</div>
+
+	<hr/>
+
+	<div id="app2">
+		<!-- 전역 컴포넌트 태그 -->
+		<my-global-component></my-global-component>
+		<!-- 지역 컴포넌트 태그 -->
+		<my-local-component></my-local-component>
+	</div>
+</body>
+</html>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.2/dist/vue.js"></script>
+<script>
+
+	// 전역컴포넌트 설정
+	// 어디서든지 컴포넌트가 적용되기 때문에 태그의 id가 app이나 app2이나 상관없이 적용됩니다.
+	Vue.component('my-global-component',{
+		template: '<div>전역 컴포넌트입니다.</div>'
+	});
+
+	// 지역 컴포넌트 설정
+	// app이라는 id를 가진 태그 내에서만 존재하는 컴포넌트와 템플릿이기 때문에
+	// app2라는 id를 가진 태그에는 적용되지 않습니다.
+	var cmp = {
+		template: '<div>지역 컴포넌트입니다.</div>'
+	};
+	// app이라는 태그의 인스턴스
+	new Vue({
+		el: "#app",
+		components: {
+			'my-local-component': cmp
+		}
+	});
+	// app2라는 태그의 인스턴스
+	new Vue({
+		el: "#app2"
+	});
+</script>

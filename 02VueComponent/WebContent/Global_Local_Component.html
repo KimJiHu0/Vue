@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>Global, Local Component</h1>
+	<div id="app">
+		<!-- 전역 컴포넌트 태그 -->
+		<my-global-component></my-global-component>
+		<!-- 지역 컴포넌트 태그 -->
+		<my-local-component></my-local-component>
+	</div>
+</body>
+</html>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.2/dist/vue.js"></script>
+<script>
+
+	// 전역컴포넌트 설정
+	Vue.component('my-global-component',{
+		template: '<div>전역 컴포넌트입니다.</div>'
+	});
+
+
+	// 지역 컴포넌트 설정
+	var cmp = {
+		template: '<div>지역 컴포넌트입니다.</div>'
+	};
+
+	new Vue({
+		el: "#app",
+		components: {
+			'my-local-component': cmp
+		}
+	});
+</script>

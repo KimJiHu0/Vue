@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>실습 60p</h1>
+
+	<!-- id가 app인 div태그를 선언합니다. -->
+	<div id="app">
+		<!-- 이 안에 Vue Instance로 넘겨주는 data를 h2태그에 출력합니다. -->
+		<header>
+			<h2>{{ message }}</h2>			
+		</header>
+		<!-- 지역 컴포넌트인 todo-list -->
+		<todo-list></todo-list>
+		<!-- 전역 컴포넌트인 todo-footer -->
+		<todo-footer></todo-footer>		
+	</div>
+
+</body>
+</html>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.2/dist/vue.js"></script>
+<script>
+	// cmp라는 변수에 지역 컴포넌트의 내용을 추가합니다.
+	var cmp = {
+		template: '<p>This is another local child component</p>'
+	}
+	// 전역 컴포넌트를 설정합니다.
+	// HTML태그의 이름은 todo-footer이며, 내용은 p태그 안에 text를 입력하고 template에 담아줍니다.
+	Vue.component('todo-footer',{
+		template: '<p>This is another global child component</p>'
+	});
+	// Vue Instance를 선언합니다.
+	var app = new Vue({
+		// app이라는 id를 가진 태그에서만 생성되며,
+		el: "#app",
+		// 보내주는 data값은 message라는 이름을 가진 값입니다.
+		data: {
+			message: 'This is a parent component'
+		},
+		// 지역 컴포넌트를 설정합니다.
+		// todo-list라는 태그의 이름의 내용은 위에서 담은 cmp라는 변수입니다.
+		components: {
+			'todo-list': cmp
+		}
+	});
+</script>

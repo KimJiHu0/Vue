@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>Component 사용하기</h1>
+	<div id="app">
+		<button>지역 컴포넌트 등록</button>
+		<my-local-component></my-local-component>
+	</div>
+</body>
+</html>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.2/dist/vue.js"></script>
+<script>
+
+	// 우선 cmp라는 변수에 template의 내용을 설정해줍니다.
+	// 화면에 나타낼 컴포넌트의 내용을 정의합니다.
+	// 컴포넌트 내용에는 data, methods, components 등 여러 속성이 들어갈 수 있습니다.
+	var cmp = {
+		template: '<div>지역 컴포넌트가 등록되었습니다.</div>'
+	}
+
+	// 그 후 인스턴스를 생성할 떄에 컴포넌트를 정의해줍니다.
+	new Vue({
+		el: "#app",
+		components: {
+			'my-local-component': cmp
+		}
+	})
+</script>

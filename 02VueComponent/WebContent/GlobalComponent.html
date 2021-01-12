@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<h1>Component 사용하기</h1>
+
+	<div id="app">
+		<button>전역 컴포넌트 등록</button>
+		<my-component></my-component> <!-- 전역 컴포넌트 표시 -->
+	</div>
+
+</body>
+</html>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.2/dist/vue.js"></script>
+<script>
+
+	// 전역 컴포넌트 등록하기
+	// 컴포넌트 이름 : my-component
+	// 컴포넌트 내용 : template라는 속성이 들어갔고, 그 안에는 태그를 만들어 주었습니다.
+	Vue.component('my-component', {
+		template: '<div>전역 컴포넌트가 등록되었습니다.</div>'
+	});
+</script>
