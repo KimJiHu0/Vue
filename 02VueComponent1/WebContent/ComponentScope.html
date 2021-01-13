@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<h1>Component Scope 예제</h1>
+	<div id = "app">
+		<my-component1></my-component1>
+		<my-component2></my-component2>
+	</div>
+
+</body> 
+</html>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.2/dist/vue.js"></script>
+<script>
+	// 첫 번째 지역 컴포넌트의 내용을 정의해주고,
+	// 데이터의 리턴 값을 cmp1Data라는 이름으로 100을 담아서 보내주었습니다.
+	var cmp1 = {
+		template: '<div>첫 번째 지역 컴포넌트 : {{ cmp1Data }}</div> ',
+		data: function(){
+			return {
+				cmp1Data: 100
+			}
+		}
+	}
+	// 두 번째 지역 컴포넌트의 내용을 정의해주고,
+	// 데이터의 리턴 값을 cmp2Data라는 이름으로 cmp1에 존재하는 data 중에 cmp1Data라는 값을 담아서
+	// 보내주었습니다.
+	var cmp2 = {
+		template: '<div>두 번째 지역 컴포넌트 : {{ cmp2Data }}</div>',
+		data: function(){
+			return {
+				cmp2Data: 150
+			}
+		}
+	}
+
+	// 그 후 Vue Instance를 생성합니다.
+	// 태그의 id는 app인 태그 내에서만 사용이 가능하며,
+	// 컴포넌트 설정을 my-component1은 cmp1, my-component2는 cmp2로 정의합니다.
+	new Vue({
+		el: "#app",
+		components:{
+			'my-component1':cmp1,
+			'my-component2':cmp2
+		}
+	})
+</script>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<h1>하위 컴포넌트에서 상위 컴포넌트로 이벤트 전달</h1>
+	<div id="app">
+		<!-- 3. show-log이벤트가 발생하면서 show-log라는 이벤트가 묶여있는 상위 컴포넌트의  printText라는 함수를 실행한다. -->
+		<child-component v-on:show-log="printText"></child-component>	
+	</div>
+
+</body>
+</html>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.2/dist/vue.js"></script>
+<script>
+	// 1.
+	// 상위 컴포넌트에서 하위 컴포넌트를 만들어줍니다.
+	// child-component는 버튼이 만들어지고, 버튼을 클릭할 시에는 showLog라는 메서드가 실행됩니다.
+	Vue.component('child-component', {
+		template: '<button v-on:click="showLog">show</button>',
+		// 메서드들을 정의하는 속성입니다.
+		methods:{
+			// 2.
+			// showLog라는 메서드가 호출되면 아래의 로직을 실행합니다.
+			showLog: function(){
+				// show-log라는 메서드를 상위 컴포넌트로 전달합니다.
+				this.$emit('show-log');
+			}
+		}
+	})
+	
+	new Vue({
+		// 정의할 태그의 id는 app이며
+		el: "#app",
+		// 데이터의 값을 정의합니다.
+		data: {
+			message: 'Hello, Vue! passed from Parent Component'
+		},
+		// 메소드들을 정의합니다.
+		methods: {
+			// 4. printText라는 메소드가 호출된다면 콘솔을 찍어줍니다.
+			printText: function(){
+				console.log("하위 컴포넌트에서 상위 컴포넌트로 이벤트를 전달했고, 이를 받았습니다.");
+			}
+		}
+	})
+</script>
