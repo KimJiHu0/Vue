@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>실습 74p</h1>
+
+	<!-- 전역 컴포넌트인 global-component에 porps속석을 전달하여 하위 컴포넌트에서 상위 컴포넌트의 메세지를 출력해보세요. -->
+	<div id="app">
+		<!-- v-bind라는 의미는 묶어준다는 의미로 볼 수 있습니다. -->
+		<!-- 만일 propstext라는 이름을 가진 것으로 묶게 된다면, message를 출력하라는 의미라고 볼 수 있습니다. -->
+		<global-component v-bind:propstext="message"></global-component>
+	</div>
+
+</body>
+</html>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.2/dist/vue.js"></script>
+<script>
+	// 전역 컴포넌트를 global-component라는 이름으로 설정하고,
+	// props 속성을 propstext라고 지정합니다.
+	Vue.component('global-component',{
+		props: ['propstext'],
+		// template 속성은 p태그 안에 위에서 지정한 proprstext라는 값을 넣어줍니다.
+		template: ' <p> {{ propstext }} </p>',
+	})
+	// 뷰 인스턴스가 생성되면, app이라는 id를 가진 태그 안에서 지정되는데
+	new Vue({
+		el: "#app",
+		// 데이터는 message라는 이름으로 담아주었습니다.
+		data: {
+			message: '하위->상위 메세지 보내기'
+		}
+	})
+</script>

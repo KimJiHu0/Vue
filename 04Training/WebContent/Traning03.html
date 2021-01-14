@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<h1>EventBus 활용하여 Component끼리 값 공유하기</h1>
+
+	<!-- app태그 밑에 컴포넌트를 선언했습니다. -->
+	<div id="app">
+		<child-component></child-component>
+	</div>
+
+</body>
+</html>
+<!-- jQuery를 사용할 수 있는 스크립트를 선언했습니다. -->
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.2/dist/vue.js"></script>
+<script>
+	// 1.
+	// 우선 evnet라는 이름의 변수에 뷰 인스턴스를 생성하여 담아줍니다.
+	var event = new Vue({})
+
+	// 2.
+	// child-component라는 컴포넌트를 만들고,
+	Vue.component('child-component', {
+		// 이의 template 속성에 div 태그 안에 버튼을 만들어주고 버튼을 클릭하면 sendText라는 함수가 발생합니다.
+		template: '<div id="nice"> 하위 컴포넌트 영역입니다. : <button v-on:click="sendText">Send</button></div>',
+		// 함수를 정의하는 methods에 sendText라는 함수를 정의합니다.
+		// 함수가 실행되면, 아까 뷰 인스턴스를 담아두었던 event와 $emit()를 통해서 SendValue라는 이름으로 'SendValue'라는 값을 보냅니다.
+		methods: {
+			sendText: function(){
+				event.$emit('SendValue', 'SendValue')
+			}
+		}
+	})
+	// 3.
+	// 뷰 인스턴스가 만들어집니다.
+	new Vue({
+		el: "#app",
+		// 라이프 사이클인 created를 통해 함수가 실행되고,
+		created: function(){
+			// event에 $on()을 통해 SendValue이름을 묶어주고, 함수가 실행됩니다.
+			// 받아온 값은 value라는 이름으로 받아지고,
+			event.$on('SendValue', function(value){
+				// 이런식으로 jQuery도 가능하고, JavaScript도 가능합니다.
+				// id가 nice인 태그의 html을 변경해줍니다.
+				$("#nice").html("<div>"+ value +"</div>");
+			});
+		}
+	})
+</script>
