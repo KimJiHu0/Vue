@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<!-- Named View를 이용해서 /login이라는 URL이 요청됐을 때 다른 컴포넌트 보여주기. -->
+
+	<h1>Router Training</h1>
+
+	<div id="app">
+		<router-view name="header"></router-view>
+		<router-view name="body"></router-view>
+		<router-view name="footer"></router-view>
+	</div>
+
+</body>
+</html>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.2/dist/vue.js"></script>
+<script src="https://unpkg.com/vue-router@3.0.1/dist/vue-router.js"></script>
+<script>
+
+	// 아래 3개의 컴포넌트는 HTML이 켜지자마자 보여줄 컴포넌트들 입니다.
+	var Header = {
+		template: '<p>Header</p>'
+	}
+	var Body = {
+		template: '<p>Body</p>'
+	}
+	var Footer = {
+		template: '<p>Footer</p>'
+	}
+
+	// 아래 3개의 컴포넌트는 /login이라는 URL을 붙였을 때 보여줄 컴포넌트들 입니다.
+	var loginHeader = {
+		template: '<p>loginHeader</p>'
+	}
+	var loginBody = {
+		template: '<p>loginBody</p>'
+	}
+	var loginFooter = {
+		template: '<p>loginFooter</p>'
+	}
+
+	var router = new VueRouter({
+		routes: [
+			{
+				// URL이 / 일때 (가장 처음에 프로젝트가 켜지면)
+				path: '/',
+				// 아래의 컴포넌트를 연결하여 보여줍니다.
+				// router-view이름: 컴포넌트명
+				components: {
+					header: Header,
+					body: Body,
+					footer: Footer
+				}
+			},
+			{
+				// 그리고 /login이라는 URL이 요청되면
+				path: '/login',
+				components: {
+					// 아래의 컴포넌트들이 연결됩니다.
+					header: loginHeader,
+					body: loginBody,
+					footer: loginFooter
+				}
+			}
+		]
+	})
+
+	new Vue({
+		router
+	}).$mount('#app')
+
+</script>

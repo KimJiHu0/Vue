@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<h1>Vue Router Sample</h1>
+
+	<div id="app">
+		<p>
+			<router-link to="/main">Main Component로 이동</router-link>
+			<router-link to="/login">Login Component로 이동</router-link>
+		</p>
+		<!-- URL값에 따라 갱신되는 화면의 영역 -->
+		<router-view></router-view>
+	</div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.2/dist/vue.js"></script>
+<!-- 라우터를 사용하기 위해서는 아래왜 같은 스크립트를 추가해야합니다. -->
+<script src="https://unpkg.com/vue-router@3.0.1/dist/vue-router.js"></script>
+<script>
+
+	// main, login 컴포넌트 정의하기
+	var Main = {
+		template: '<div>MainCompoment</div>'
+	};
+
+	var Login = {
+		template: '<div>LoginComponent</div>'
+	};
+
+	// 각 URL에 맞춰 표시할 컴포넌트 정의하기
+	var routes = [
+		{
+			path: '/main',
+			component: Main 
+		},
+		{
+			path: '/login',
+			component: Login
+		}
+	];
+
+	// Vue Router 정의하기
+	var router = new VueRouter({
+		mode: 'history',
+		routes
+	})
+	// Vue Instance에 Router 추가하기.
+	var app = new Vue({
+		router
+	}).$mount('#app');
+</script>
+</html>
+
