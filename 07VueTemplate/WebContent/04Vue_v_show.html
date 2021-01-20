@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1> v-show 사용하기</h1>
+
+	<div id="show">
+		<p v-show="flag">flag가 true일 때 나타납니다.</p>
+	</div>
+</body>
+</html>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.2/dist/vue.js"></script>
+<script>
+	new Vue({
+		el: '#show',
+		data: {
+			flag: false
+		}
+	})
+</script>
+

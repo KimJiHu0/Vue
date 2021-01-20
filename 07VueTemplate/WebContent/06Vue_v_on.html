@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>v-on 사용하기</h1>
+	<div id="clickevent">
+		<button v-on:click="Hello(100)">Click</button>
+	</div>
+</body>
+</html>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.2/dist/vue.js"></script>
+<script>
+	new Vue({
+		el: '#clickevent',
+		methods: {
+			Hello: function(value){
+				alert("안녕하세요!" + value)
+			}
+		}
+	})
+</script>
+

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>Vue Template01</h1>
+	<div id="app">{{ message }}</div>
+
+	<h1>Vue Template02</h1>
+	<div id="app2"></div>
+
+
+	<!-- 
+		Vue 데이터가 변경되어도 값을 바꾸고 싶지 않다면
+		div태그에 v-once라는 속성을 추가합니다.
+	-->
+	<h1>1회 binding</h1>
+	<div id="app3" v-once>
+		{{ message }}
+	</div>
+
+	<h1>태그의 속성 바인딩</h1>
+	<div id="app4">
+		<p v-bind:id="idA">아이디 바인딩</p>
+		<p v-bind:class="classA">클래스 바인딩</p>
+		<p v-bind:style="styleA">스타일 바인딩</p>
+	</div>
+
+	<!-- 이러한 복잡한 연산은 인스턴스 안에서 처리합니다. -->
+	<h1>자바스크립트 표현식</h1>
+	<div id="app5">
+		<p>{{ message }}</p>
+		<p>{{ message + "!!!!" }}</p>
+		<p>{{ message.split('').reverse().join('') }}</p>
+		<!-- 하지막 위와 같이 복잡한 스크립트 코드는 computed라는 속성을 통해서 -->
+		<!-- 인스턴스 내에서 처리하는게 좋습니다. -->
+		<p>{{ reversemessage }}</p>
+	</div>
+</body>
+</html>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.2/dist/vue.js"></script>
+<script>
+
+	// Template 사용하는 첫번 째 방법
+	new Vue({
+		el: '#app',
+		data: {
+			message: 'Hello, Vue.js!'
+		}
+	})
+
+	// Template 사용하는 두번 째 방법
+	new Vue({
+		el: '#app2',
+		data: {
+			message: 'Hello, Vue.js!!'
+		},
+		template: '<p>{{message}}</p>'
+	})
+
+	// 콧수염 괄호
+	new Vue({
+		el: '#app3',
+		data: {
+			message: 'Hello, Vue.js!!!'
+		}
+	})
+
+	// 태그의 속성 바인딩
+	new Vue({
+		el: '#app4',
+		data: {
+			idA: 10,
+			classA: 'container',
+			styleA: 'color: blue'
+		}
+	})
+
+	// 자바스크립트 표현식
+	new Vue({
+		el: '#app5',
+		data: {
+			message: 'Hello, vue.js!!!!!!'
+		},
+		computed: {
+			reversemessage: function(){
+				return this.message.split('').reverse().join('')
+			}
+		}
+	})
+
+</script>
