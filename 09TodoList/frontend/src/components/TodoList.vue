@@ -46,9 +46,10 @@ export default {
     // 할 일 삭제하는 함수
     removeTodo: function(todoitem, index){
       // 로컬 스토리지에서 해당 todoitem을 삭제하고,
-      localStorage.removeItem(todoitem)
+      // localStorage.removeItem(todoitem)
       // todoItems라는 배열 내에서 특정 index에서 부여한 숫자만큼의 index를 삭제합니다.
-      this.todoItems.splice(index, 1)
+      // this.todoItems.splice(index, 1)
+      this.$emit('removeone', todoitem, index);
     }
   }
 }

@@ -2,7 +2,7 @@
   <div id="main">
     <TodoHeader></TodoHeader>
     <TodoInput v-on:addTodo="addTodo"></TodoInput>
-    <TodoList v-bind:propsdata="todoItems"></TodoList>
+    <TodoList v-bind:propsdata="todoItems" @removeone="removeone"></TodoList>
     <TodoFooter v-on:clearAll="clearAll"></TodoFooter>
   </div>
 </template>
@@ -43,6 +43,10 @@ export default {
       // 그래서 배열인 todoItems도 빈 배열로 만들어줘야합니다.
       localStorage.clear();
       this.todoItems = [];
+    },
+    removeone: function(todoitem, index){
+      localStorage.removeItem(todoitem);
+      this.todoItems.splice(index, 1);
     }
   },
 
